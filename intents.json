@@ -2,23 +2,46 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["Hi", "Hello", "Hey", "Good morning"],
+      "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening", "Hey there"],
       "responses": ["Hello! How can I help you today?", "Hi there! What can I do for you?"]
     },
     {
       "tag": "order_status",
-      "patterns": ["Where is my order?", "Track my order", "Order status"],
+      "patterns": [
+        "Where is my order?",
+        "Track my order",
+        "Order status",
+        "Where is my package?",
+        "Track my package",
+        "Has my order shipped?"
+      ],
       "responses": ["Please provide your order ID to track your order."]
     },
     {
       "tag": "refund",
-      "patterns": ["I want a refund", "Refund my money", "Cancel my order"],
+      "patterns": [
+        "I want a refund",
+        "Refund my money",
+        "Cancel my order",
+        "I need a refund",
+        "How do I get refund?"
+      ],
       "responses": ["Your refund request has been initiated."]
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you", "Goodbye"],
+      "patterns": ["Bye", "See you", "Goodbye", "Catch you later"],
       "responses": ["Goodbye! Have a great day."]
+    },
+    {
+      "tag": "bot_name",
+      "patterns": ["your name", "what is your name", "who are you"],
+      "responses": ["I am your customer support assistant."]
+    },
+    {
+      "tag": "time",
+      "patterns": ["what time is it", "current time", "tell me time"],
+      "responses": ["Fetching current time..."]
     }
   ]
 }
