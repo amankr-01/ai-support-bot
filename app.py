@@ -1,21 +1,24 @@
-import model  # forces training on startup
-from flask import Flask, request, jsonify, render_template
+import streamlit as st
 from model import predict_intent, get_response
+import model  # ensures model training runs
 
-app = Flask(__name__)
+st.set_page_config(page_title="Support Bot", page_icon="🤖")
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+st.title("🤖 Customer Support Chatbot")
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    user_input = request.json["message"]
-    
-    tag = predict_intent(user_input)
-    response = get_response(tag)
-    
-    return jsonify({"response": response})
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-if __name__ == "__main__":
-    app.run(debug=True)
+user_input = st.text_input("Type your message...")
+
+if st.button("Send"):
+    if user_input:
+        tag = predict_intent(user_input)
+        response = get_response(tag)
+
+        st.session_state.chat_history.append(("You", user_input))
+        st.session_state.chat_history.append(("Bot", response))
+
+# Display chat
+for sender, message in st.session_state.chat_history:
+    st.write(f"**{sender}:** {message}")
