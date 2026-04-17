@@ -5,11 +5,11 @@ import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-# Load intents
+
 with open("intents.json") as file:
     data = json.load(file)
 
-# Train only if model not exists
+
 if not os.path.exists("model.pkl"):
 
     texts = []
@@ -20,7 +20,7 @@ if not os.path.exists("model.pkl"):
             texts.append(pattern.lower())
             labels.append(intent["tag"])
 
-    # Improved vectorizer
+    
     vectorizer = TfidfVectorizer(
         ngram_range=(1, 2),
         stop_words='english'
@@ -34,7 +34,7 @@ if not os.path.exists("model.pkl"):
     pickle.dump(model, open("model.pkl", "wb"))
     pickle.dump(vectorizer, open("vectorizer.pkl", "wb"))
 
-# Prediction function
+
 def predict_intent(text):
     model = pickle.load(open("model.pkl", "rb"))
     vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
@@ -49,7 +49,7 @@ def predict_intent(text):
 
     return model.predict(X_test)[0]
 
-# Response function
+
 def get_response(tag):
     if tag == "unknown":
         return random.choice([
