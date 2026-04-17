@@ -1,20 +1,12 @@
 import streamlit as st
 from model import predict_intent, get_response
 from datetime import datetime
-from transformers import pipeline
 import model
 
 st.set_page_config(page_title="Support Bot", page_icon="🤖")
 
-st.title("🤖 Smart Customer Support Chatbot")
-st.caption("Now powered with AI fallback 🔥")
-
-# Load AI model (only once)
-@st.cache_resource
-def load_ai():
-    return pipeline("text-generation", model="distilgpt2")
-
-ai_model = load_ai()
+st.title("🤖 Customer Support Chatbot")
+st.caption("AI-powered chatbot using NLP & Machine Learning")
 
 # Chat history
 if "chat_history" not in st.session_state:
@@ -24,19 +16,28 @@ if "chat_history" not in st.session_state:
 user_input = st.chat_input("Type your message...")
 
 if user_input:
-    tag = predict_intent(user_input)
+    tag = predict_intent(user_input.lower())
 
-    # 🎯 If known intent → use your ML bot
-    if tag != "unknown":
-        if tag == "time":
+    # 🎯 Known intents
+    if tag == "time":
+        response = f"Current time is {datetime.now().strftime('%H:%M:%S')}"
+    elif tag != "unknown":
+        response = get_response(tag)
+
+    # 🧠 Smart fallback (NO AI garbage)
+    else:
+        text = user_input.lower()
+
+        if "how are you" in text:
+            response = "I'm doing great! How can I assist you today?"
+        elif "your name" in text or "who are you" in text:
+            response = "I'm your AI customer support assistant."
+        elif "help" in text:
+            response = "I can help you with orders, refunds, tracking, and general queries."
+        elif "time" in text:
             response = f"Current time is {datetime.now().strftime('%H:%M:%S')}"
         else:
-            response = get_response(tag)
-
-    # 🧠 If unknown → use AI (SMART RESPONSE)
-    else:
-        ai_response = ai_model(user_input, max_length=50, num_return_sequences=1)
-        response = ai_response[0]["generated_text"]
+            response = "Sorry, I didn't understand that. You can ask about orders, refunds, or general questions."
 
     st.session_state.chat_history.append(("user", user_input))
     st.session_state.chat_history.append(("bot", response))
