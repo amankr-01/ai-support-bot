@@ -1,3 +1,4 @@
+import model  # forces training on startup
 from flask import Flask, request, jsonify, render_template
 from model import predict_intent, get_response
 
