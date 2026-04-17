@@ -1,10 +1,8 @@
+
 import streamlit as st
 from openai import OpenAI
-from datetime import datetime
 
-# 🔑 Add your API key here
-client = OpenAI(api_key="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")
-
+client = OpenAI(api_key=st.secrets["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"])
 st.set_page_config(page_title="Smart Support Bot", page_icon="🤖")
 
 st.title("🤖 AI Customer Support Chatbot")
