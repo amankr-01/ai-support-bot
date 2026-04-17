@@ -1,50 +1,38 @@
 import streamlit as st
-from model import predict_intent, get_response
+from openai import OpenAI
 from datetime import datetime
-import model
 
-st.set_page_config(page_title="Support Bot", page_icon="🤖")
+# 🔑 Add your API key here
+client = OpenAI(api_key="YOUR_OPENAI_API_KEY")
 
-st.title("🤖 Customer Support Chatbot")
-st.caption("AI-powered chatbot using NLP & Machine Learning")
+st.set_page_config(page_title="Smart Support Bot", page_icon="🤖")
+
+st.title("🤖 AI Customer Support Chatbot")
+st.caption("Powered by advanced AI")
 
 # Chat history
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 # Input
-user_input = st.chat_input("Type your message...")
+user_input = st.chat_input("Ask anything...")
 
 if user_input:
-    tag = predict_intent(user_input.lower())
+    st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # 🎯 Known intents
-    if tag == "time":
-        response = f"Current time is {datetime.now().strftime('%H:%M:%S')}"
-    elif tag != "unknown":
-        response = get_response(tag)
+    # 🔥 GPT Response
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=st.session_state.messages
+    )
 
-    # 🧠 Smart fallback (NO AI garbage)
-    else:
-        text = user_input.lower()
+    bot_reply = response.choices[0].message.content
 
-        if "how are you" in text:
-            response = "I'm doing great! How can I assist you today?"
-        elif "your name" in text or "who are you" in text:
-            response = "I'm your AI customer support assistant."
-        elif "help" in text:
-            response = "I can help you with orders, refunds, tracking, and general queries."
-        elif "time" in text:
-            response = f"Current time is {datetime.now().strftime('%H:%M:%S')}"
-        else:
-            response = "Sorry, I didn't understand that. You can ask about orders, refunds, or general questions."
-
-    st.session_state.chat_history.append(("user", user_input))
-    st.session_state.chat_history.append(("bot", response))
+    st.session_state.messages.append({"role": "assistant", "content": bot_reply})
 
 # Display chat
-for sender, message in st.session_state.chat_history:
-    if sender == "user":
-        st.chat_message("user").write(message)
+for msg in st.session_state.messages:
+    if msg["role"] == "user":
+        st.chat_message("user").write(msg["content"])
     else:
-        st.chat_message("assistant").write(message)
+        st.chat_message("assistant").write(msg["content"])
