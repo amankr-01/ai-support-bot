@@ -1,5 +1,2 @@
 streamlit
-scikit-learn
-numpy
-transformers
-torch
+openai
