@@ -2,46 +2,44 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening", "Hey there"],
-      "responses": ["Hello! How can I help you today?", "Hi there! What can I do for you?"]
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "Good evening", "Hey there", "hii", "helo", "hye", "yo", "sup", "greetings", "hi!", "hello!", "hey!", "hey bot", "hi bot"
+      ],
+      "responses": ["Hello! How can I help you today?", "Hi there! What can I do for you?", "Greetings! How may I assist?"]
     },
     {
       "tag": "order_status",
       "patterns": [
-        "Where is my order?",
-        "Track my order",
-        "Order status",
-        "Where is my package?",
-        "Track my package",
-        "Has my order shipped?"
+        "Where is my order?", "Track my order", "Order status", "Where is my package?", "Track my package", "Has my order shipped?", "order update", "order info", "order details", "track order", "track package", "order shipped?", "order delivery status"
       ],
-      "responses": ["Please provide your order ID to track your order."]
+      "responses": ["Please provide your order ID to track your order.", "I can help you track your order. Please share your order ID."]
     },
     {
       "tag": "refund",
       "patterns": [
-        "I want a refund",
-        "Refund my money",
-        "Cancel my order",
-        "I need a refund",
-        "How do I get refund?"
+        "I want a refund", "Refund my money", "Cancel my order", "I need a refund", "How do I get refund?", "money back", "return order", "refund process", "how to get refund", "refund status", "refund please"
       ],
-      "responses": ["Your refund request has been initiated."]
+      "responses": ["Your refund request has been initiated.", "Refund process started. You'll be notified soon."]
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you", "Goodbye", "Catch you later"],
-      "responses": ["Goodbye! Have a great day."]
+      "patterns": ["Bye", "See you", "Goodbye", "Catch you later", "see ya", "bye bye", "good night", "goodbye bot", "see you soon"],
+      "responses": ["Goodbye! Have a great day.", "See you next time!", "Take care!"]
     },
     {
       "tag": "bot_name",
-      "patterns": ["your name", "what is your name", "who are you"],
-      "responses": ["I am your customer support assistant."]
+      "patterns": ["your name", "what is your name", "who are you", "bot name", "identify yourself", "what should I call you"],
+      "responses": ["I am your customer support assistant.", "You can call me SupportBot."]
     },
     {
       "tag": "time",
-      "patterns": ["what time is it", "current time", "tell me time"],
+      "patterns": ["what time is it", "current time", "tell me time", "time?", "can you tell the time", "show time", "give me the time", "time now"],
       "responses": ["Fetching current time..."]
+    },
+    {
+      "tag": "date",
+      "patterns": ["what is the date", "today's date", "date?", "current date", "show date", "give me the date", "date today", "today date"],
+      "responses": ["Fetching today's date..."]
     }
   ]
 }
