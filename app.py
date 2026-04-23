@@ -4,6 +4,7 @@ from datetime import datetime
 st.set_page_config(page_title="Smart Support Bot", page_icon="🤖")
 
 st.title(" AI Customer Support Chatbot")
+
 st.caption("Smart chatbot without API (offline logic)")
 
 
