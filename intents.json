@@ -1,39 +1,45 @@
 {
- "intents": [
-  {
-   "tag": "greeting",
-   "patterns": ["hi", "hello", "hey", "hii", "namaste", "bhai hello"],
-   "responses": ["Hello! Kaise help kar sakta hoon?", "Hi there! How can I assist you today?"]
-  },
-  {
-   "tag": "refund",
-   "patterns": ["refund chahiye", "return my money", "cancel order", "paise wapas karo", "refund kab milega"],
-   "responses": ["Sure! Refund process initiate kar deta hoon. Please share your order ID."]
-  },
-  {
-   "tag": "order_status",
-   "patterns": ["where is my order", "order kaha hai", "track order", "order kab aayega"],
-   "responses": ["Aap apna order ID share karein, main check karta hoon."]
-  },
-  {
-   "tag": "complaint",
-   "patterns": ["bad product", "not happy", "issue hai", "product kharab hai", "service bekaar hai"],
-   "responses": ["Sorry for the inconvenience. Please detail batayein, main resolve karta hoon."]
-  },
-  {
-   "tag": "payment_issue",
-   "patterns": ["payment failed", "money deducted", "transaction issue", "paise kat gaye"],
-   "responses": ["Don't worry! Agar payment deduct hua hai, wo 3-5 days me auto refund ho jayega."]
-  },
-  {
-   "tag": "thanks",
-   "patterns": ["thanks", "thank you", "thx", "shukriya"],
-   "responses": ["Glad I could help 😊"]
-  },
-  {
-   "tag": "goodbye",
-   "patterns": ["bye", "goodbye", "see you", "milte hain"],
-   "responses": ["Goodbye! Have a great day 🚀"]
-  }
- ]
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "Good evening", "Hey there", "hii", "helo", "hye", "yo", "sup", "greetings", "hi!", "hello!", "hey!", "hey bot", "hi bot"
+      ],
+      "responses": ["Hello! How can I help you today?", "Hi there! What can I do for you?", "Greetings! How may I assist?"]
+    },
+    {
+      "tag": "order_status",
+      "patterns": [
+        "Where is my order?", "Track my order", "Order status", "Where is my package?", "Track my package", "Has my order shipped?", "order update", "order info", "order details", "track order", "track package", "order shipped?", "order delivery status"
+      ],
+      "responses": ["Please provide your order ID to track your order.", "I can help you track your order. Please share your order ID."]
+    },
+    {
+      "tag": "refund",
+      "patterns": [
+        "I want a refund", "Refund my money", "Cancel my order", "I need a refund", "How do I get refund?", "money back", "return order", "refund process", "how to get refund", "refund status", "refund please"
+      ],
+      "responses": ["Your refund request has been initiated.", "Refund process started. You'll be notified soon."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you", "Goodbye", "Catch you later", "see ya", "bye bye", "good night", "goodbye bot", "see you soon"],
+      "responses": ["Goodbye! Have a great day.", "See you next time!", "Take care!"]
+    },
+    {
+      "tag": "bot_name",
+      "patterns": ["your name", "what is your name", "who are you", "bot name", "identify yourself", "what should I call you"],
+      "responses": ["I am your customer support assistant.", "You can call me SupportBot."]
+    },
+    {
+      "tag": "time",
+      "patterns": ["what time is it", "current time", "tell me time", "time?", "can you tell the time", "show time", "give me the time", "time now"],
+      "responses": ["Fetching current time..."]
+    },
+    {
+      "tag": "date",
+      "patterns": ["what is the date", "today's date", "date?", "current date", "show date", "give me the date", "date today", "today date"],
+      "responses": ["Fetching today's date..."]
+    }
+  ]
 }
